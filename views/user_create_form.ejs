@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title><%= title%></title>
+	</head>
+	<body>
+		<h1><%= title%></h1>
+		<form method="post">
+			<div class="type-text">
+				<label for="first_name">First Name:</label>
+				<input type="text" name="first_name" />
+			</div>
+			<div class="type-text">
+				<label for="last_name">Last Name:</label>
+				<input type="text" name="last_name" />
+			</div>
+			<div class="type-text">
+				<label for="username">Username:</label>
+				<input type="text" name="username" />
+			</div>
+			<div class="type-password">
+				<label for="password">Password:</label>
+				<input type="text" name="password" />
+			</div>
+			<div class="type-password">
+				<label for="passwordConfirmation"
+					>Confirm Password:</label
+				>
+				<input type="text" name="passwordConfirmation" />
+			</div>
+			<div class="type-checkbox">
+				<input type="checkbox" name="admin" />
+				<label for="admin">Is admin</label>
+			</div>
+		</form>
+	</body>
+</html>
