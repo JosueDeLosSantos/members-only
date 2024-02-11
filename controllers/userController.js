@@ -1,7 +1,112 @@
 const User = require('../models/user');
 const asyncHandler = require('express-async-handler');
+const { body, validationResult } = require('express-validator');
+
+const session = require('express-session');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const bcrypt = require('bcryptjs');
 
 // Display User create form on GET
 exports.user_create_get = (req, res, next) => {
-	res.render('user_create_form', { title: 'Sign up' });
+	res.render('user_create_form', {
+		title: 'Sign up',
+		first_name: req.body.first_name,
+		last_name: req.body.last_name,
+		username: req.body.username,
+		password: req.body.password,
+		passwordConfirmation: req.body.passwordConfirmation,
+		admin: req.body.admin,
+		errors: false,
+	});
 };
+
+exports.user_create_post = [
+	(req, res, next) => {
+		// if req.body.admin === on
+		if (req.body.admin) {
+			req.body.admin = true;
+		} else {
+			req.body.admin = false;
+		}
+		next();
+	},
+	// Validate and sanitize fields.
+	body('first_name')
+		.trim()
+		.isLength({ min: 2 })
+		.escape()
+		.withMessage('First name must be specified.')
+		.isAlpha()
+		.withMessage('First name has non-alpha characters.'),
+	body('last_name')
+		.trim()
+		.isLength({ min: 2 })
+		.escape()
+		.withMessage('Last name must be specified.'),
+	body('username')
+		.trim()
+		.isLength({ min: 2 })
+		.escape()
+		.withMessage('username must be specified.')
+		.isAlphanumeric()
+		.withMessage(
+			'username has non-alphanumeric characters.'
+		),
+	body('password')
+		.trim()
+		.isLength({ min: 6 })
+		.escape()
+		.withMessage('password must be specified.')
+		.isAlphanumeric()
+		.withMessage(
+			'Password has non-alphanumeric characters.'
+		),
+	body('passwordConfirmation')
+		.custom((value, { req }) => {
+			return value === req.body.password;
+		})
+		.withMessage('Passwords do not match'),
+	// Process request after validation and sanitization.
+	asyncHandler(async (req, res, next) => {
+		// Extract the validation errors from a request.
+		const errors = validationResult(req);
+
+		// Create User object with escaped and trimmed data
+		const user = new User({
+			first_name: req.body.first_name,
+			last_name: req.body.last_name,
+			username: req.body.username,
+			password: req.body.password,
+			admin: req.body.admin,
+		});
+
+		bcrypt.hash(
+			req.body.password,
+			10,
+			async (err, hashedPassword) => {
+				if (!errors.isEmpty() || err) {
+					// There are errors. Render form again with sanitized values/errors messages.
+					res.render('user_create_form', {
+						title: 'Sign up',
+						first_name: req.body.first_name,
+						last_name: req.body.last_name,
+						username: req.body.username,
+						password: req.body.password,
+						passwordConfirmation:
+							req.body.passwordConfirmation,
+						errors: errors.array(),
+					});
+					return;
+				} else {
+					// Data from form is valid.
+					// store hashedPassword in DB
+					user.password = hashedPassword;
+					// Save user
+					await user.save();
+					res.redirect('/');
+				}
+			}
+		);
+	}),
+];

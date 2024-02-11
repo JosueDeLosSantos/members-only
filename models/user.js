@@ -5,8 +5,8 @@ const { Schema } = mongoose;
 const UserSchema = new Schema({
 	first_name: { type: String, required: true, maxLength: 50 },
 	last_name: { type: String, required: true, maxLength: 100 },
-	username: { type: String, required: true, maxLength: 10 },
-	password: { type: String, required: true, maxLength: 16 },
+	username: { type: String, required: true, maxLength: 50 },
+	password: { type: String, required: true, minLength: 8 },
 	member: { type: Boolean, default: false },
 	admin: { type: Boolean, default: false },
 });

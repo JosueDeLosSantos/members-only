@@ -13,30 +13,82 @@
 		<form method="post">
 			<div class="type-text">
 				<label for="first_name">First Name:</label>
-				<input type="text" name="first_name" />
+				<% if (first_name) { %>
+				<input
+					type="text"
+					name="first_name"
+					value="<%= first_name%>"
+				/>
+				<% } else { %>
+				<input type="text" name="first_name" value="" />
+				<% } %>
 			</div>
 			<div class="type-text">
 				<label for="last_name">Last Name:</label>
-				<input type="text" name="last_name" />
+				<% if (last_name) { %>
+				<input
+					type="text"
+					name="last_name"
+					value="<%= last_name%>"
+				/>
+				<% } else { %>
+				<input type="text" name="last_name" value="" />
+				<% } %>
 			</div>
 			<div class="type-text">
 				<label for="username">Username:</label>
-				<input type="text" name="username" />
+				<% if (username) { %>
+				<input
+					type="text"
+					name="username"
+					value="<%= username%>"
+				/>
+				<% } else { %>
+				<input type="text" name="username" value="" />
+				<% } %>
 			</div>
 			<div class="type-password">
 				<label for="password">Password:</label>
-				<input type="text" name="password" />
+				<% if (password) { %>
+				<input
+					type="text"
+					name="password"
+					value="<%= password%>"
+				/>
+				<% } else { %>
+				<input type="text" name="password" value="" />
+				<% } %>
 			</div>
 			<div class="type-password">
 				<label for="passwordConfirmation"
 					>Confirm Password:</label
 				>
-				<input type="text" name="passwordConfirmation" />
+				<% if (passwordConfirmation) { %>
+				<input
+					type="text"
+					name="passwordConfirmation"
+					value="<%= passwordConfirmation%>"
+				/>
+				<% } else { %>
+				<input
+					type="text"
+					name="passwordConfirmation"
+					value=""
+				/>
+				<% } %>
 			</div>
 			<div class="type-checkbox">
 				<input type="checkbox" name="admin" />
 				<label for="admin">Is admin</label>
 			</div>
+			<button type="submit">Sign up</button>
 		</form>
+		<% if (errors) { %>
+		<ul>
+			<%errors.forEach(function(error){%>
+			<li><%=error.msg%></li>
+			<%});%>
+		</ul>
+		<% } %>
 	</body>
 </html>
