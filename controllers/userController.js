@@ -11,26 +11,15 @@ const bcrypt = require('bcryptjs');
 exports.user_create_get = (req, res, next) => {
 	res.render('user_create_form', {
 		title: 'Sign up',
-		first_name: req.body.first_name,
-		last_name: req.body.last_name,
-		username: req.body.username,
-		password: req.body.password,
-		passwordConfirmation: req.body.passwordConfirmation,
-		admin: req.body.admin,
+		user: undefined,
+		passwordConfirmation: undefined,
+		admin: undefined,
 		errors: false,
 	});
 };
 
+// User create form on POST
 exports.user_create_post = [
-	(req, res, next) => {
-		// if req.body.admin === on
-		if (req.body.admin) {
-			req.body.admin = true;
-		} else {
-			req.body.admin = false;
-		}
-		next();
-	},
 	// Validate and sanitize fields.
 	body('first_name')
 		.trim()
@@ -78,7 +67,7 @@ exports.user_create_post = [
 			last_name: req.body.last_name,
 			username: req.body.username,
 			password: req.body.password,
-			admin: req.body.admin,
+			admin: req.body.admin ? true : false,
 		});
 
 		bcrypt.hash(
@@ -89,12 +78,10 @@ exports.user_create_post = [
 					// There are errors. Render form again with sanitized values/errors messages.
 					res.render('user_create_form', {
 						title: 'Sign up',
-						first_name: req.body.first_name,
-						last_name: req.body.last_name,
-						username: req.body.username,
-						password: req.body.password,
+						user: user,
 						passwordConfirmation:
 							req.body.passwordConfirmation,
+						admin: req.body.admin,
 						errors: errors.array(),
 					});
 					return;
