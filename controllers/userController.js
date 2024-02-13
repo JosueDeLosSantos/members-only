@@ -2,9 +2,9 @@ const User = require('../models/user');
 const asyncHandler = require('express-async-handler');
 const { body, validationResult } = require('express-validator');
 
-const session = require('express-session');
+// const session = require('express-session');
 const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
+// const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcryptjs');
 
 // Display User create form on GET
@@ -91,9 +91,20 @@ exports.user_create_post = [
 					user.password = hashedPassword;
 					// Save user
 					await user.save();
-					res.redirect('/');
+					res.redirect('/users/log-in');
 				}
 			}
 		);
 	}),
 ];
+
+// Display login form on GET
+exports.login_form_get = (req, res, next) => {
+	res.render('login_form');
+};
+
+// login form on POST
+exports.login_form_post = passport.authenticate('local', {
+	successRedirect: '/',
+	failureRedirect: '/log-in-failure',
+});

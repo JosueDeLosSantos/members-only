@@ -9,6 +9,10 @@
 		<title>Home</title>
 	</head>
 	<body>
-		<h1>Welcome to the <%= title %></h1>
+		<% if (currentUser) { %>
+		<h1>Welcome <%= currentUser.last_name%></h1>
+		<% } else { %>
+		<h1>You are logged out</h1>
+		<% }%>
 	</body>
 </html>

@@ -23,8 +23,6 @@ db.on(
 	console.log.bind(console, 'connected to database')
 );
 
-const User = require('./models/user');
-
 const app = express();
 
 app.use(passport.initialize());
@@ -38,6 +36,7 @@ app.use(
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
 
+const User = require('./models/user');
 passport.use(
 	new LocalStrategy(async (username, password, done) => {
 		try {
