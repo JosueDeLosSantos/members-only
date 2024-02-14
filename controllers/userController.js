@@ -2,9 +2,7 @@ const User = require('../models/user');
 const asyncHandler = require('express-async-handler');
 const { body, validationResult } = require('express-validator');
 
-// const session = require('express-session');
 const passport = require('passport');
-// const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcryptjs');
 
 // Display User create form on GET
@@ -100,10 +98,6 @@ exports.user_create_post = [
 
 // Display login form on GET
 exports.login_form_get = (req, res, next) => {
-	console.dir(req.originalUrl); // '/users/log-in'
-	console.dir(req.rawHeaders[1]); // 'localhost:3000'
-	console.dir(req.protocol); // 'http'
-	console.log(`${req.rawHeaders[1]}${req.originalUrl}`);
 	res.render('login_form');
 };
 

@@ -10,16 +10,65 @@
 		<link rel="stylesheet" href="/style.css" />
 	</head>
 	<body>
-		<% if (currentUser) { %>
-		<h1>Welcome <%= currentUser.last_name%></h1>
-		<button>
-			<a
-				href="<%= (currentPath !== undefined) ? `${currentPath}users/log-out` : '' %>"
-				>Log out</a
+		<% if (currentUser) { %> <% if(currentUser.admin) { %>
+		<h1>I am logged and I am an admin.</h1>
+		<% } else if (currentUser.member) { %>
+		<h1>
+			I am logged in, I am a member and I'm not an admin.
+		</h1>
+		<% } else {%>
+		<h1>I am logged in but I am not a member.</h1>
+		<br />
+		<p>
+			<a href="<%= `${mainPath}posts/create`%>"
+				>Post something</a
 			>
-		</button>
-		<% } else { %>
-		<h1>You are logged out</h1>
+		</p>
+		<% }%> <% } else { %>
+		<nav>
+			<div class="logo">
+				<p>Posting Club</p>
+			</div>
+			<ul>
+				<li class="log-in">
+					<a href="<%= `${currentPath}users/log-in`%>"
+						>Log in</a
+					>
+				</li>
+				<li>or</li>
+				<li class="sign up">
+					<a href="<%= `${currentPath}users/sign-up`%>"
+						>Sign up</a
+					>
+				</li>
+			</ul>
+		</nav>
+		<aside>
+			<ul>
+				<li><a href="">About</a></li>
+				<li>
+					<a
+						href="<%= (currentPath !== undefined) ? `${currentPath}users/log-in` : '' %>"
+						>Log in</a
+					>
+					to add commets
+				</li>
+			</ul>
+		</aside>
+		<main>
+			<header>
+				<h1>Posts</h1>
+			</header>
+		</main>
+		<footer>
+			<p>&copy</p>
+			<p>
+				<a href="https://github.com/JosueDeLosSantos"
+					>Josue De Los Santos</a
+				>
+				2024
+			</p>
+		</footer>
 		<% }%>
 	</body>
 </html>

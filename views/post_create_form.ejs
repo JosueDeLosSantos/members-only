@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Post creation</title>
+		<link rel="stylesheet" href="/style.css" />
+	</head>
+	<body>
+		<% if (currentUser){%>
+		<nav>
+			<div class="logo">
+				<p>Posting Club</p>
+			</div>
+			<ul>
+				<li class="link">
+					<a href="<%= `${mainPath}users/log-out`%>"
+						>Log out</a
+					>
+				</li>
+			</ul>
+		</nav>
+		<header>
+			<h1><%= title%></h1>
+		</header>
+		<main>
+			<form method="post">
+				<div class="type-text">
+					<label for="title">Title</label>
+					<input
+						type="text"
+						name="title"
+						value="<%= (post !== undefined) ? `${post.title}`: ''%>"
+					/>
+				</div>
+				<div class="type-text">
+					<label for="message">Message</label>
+					<textarea
+						name="message"
+						cols="30"
+						rows="10"
+						value="<%= (post !== undefined) ? `${post.message}`: ''%>"
+					></textarea>
+				</div>
+				<div class="type-date">
+					<label for="date">date</label>
+					<input
+						type="date"
+						name="date"
+						value="<%= (post !== undefined) ? `${post.date}`: ''%>"
+					/>
+				</div>
+				<button type="submit">Post now</button>
+			</form>
+			<% if (errors) { %>
+			<ul>
+				<%errors.forEach(function(error){%>
+				<li><%=error.msg%></li>
+				<%});%>
+			</ul>
+			<% } %>
+		</main>
+		<%} else {%>
+		<p class="error-msg">
+			<a href="<%= `${mainPath}users/log-in`%>">Log in</a>
+			before creating a message
+		</p>
+		<% }%>
+	</body>
+</html>
