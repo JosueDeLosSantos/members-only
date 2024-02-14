@@ -13,8 +13,10 @@ const PostSchema = new Schema({
 	},
 });
 
-PostSchema.virtual('date_yyyy_mm_dd').get(function () {
-	return DateTime.fromJSDate(this.date).toISODate(); // format YYYY-MM-DD
+PostSchema.virtual('virtual_date').get(function () {
+	return DateTime.fromJSDate(this.date)
+		.setLocale('en')
+		.toLocaleString(DateTime.DATETIME_FULL); // format: February 14, 2024 at 6:04 PM AST
 });
 
 module.exports = mongoose.model('Post', PostSchema);

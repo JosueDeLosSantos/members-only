@@ -24,7 +24,6 @@ exports.post_create_post = [
 		.isLength({ min: 10 })
 		.escape()
 		.withMessage('Message must be specified.'),
-	body('date', 'Invalid date').isISO8601().toDate(),
 	// Process request after validation and sanitization.
 	asyncHandler(async (req, res, next) => {
 		// Extract the validation errors from a request.
@@ -33,7 +32,7 @@ exports.post_create_post = [
 		const post = new Post({
 			title: req.body.title,
 			message: req.body.message,
-			date: req.body.date,
+			date: new Date(),
 			user: req.user._id,
 		});
 

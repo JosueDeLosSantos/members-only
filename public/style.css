@@ -61,7 +61,7 @@ nav > ul {
 aside {
 	float: left;
 	width: 15%;
-	height: 100%;
+	min-height: 80vh;
 	color: var(--option);
 	margin-left: 0.8rem;
 	margin-top: 1vh;
@@ -88,7 +88,7 @@ footer {
 	z-index: 2;
 	position: sticky;
 	bottom: 0;
-	right: 0;
+	right: -20;
 	display: flex;
 	justify-content: center;
 	padding: 1rem 0 1rem 0;

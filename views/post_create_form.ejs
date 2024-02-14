@@ -45,14 +45,6 @@
 						value="<%= (post !== undefined) ? `${post.message}`: ''%>"
 					></textarea>
 				</div>
-				<div class="type-date">
-					<label for="date">date</label>
-					<input
-						type="date"
-						name="date"
-						value="<%= (post !== undefined) ? `${post.date}`: ''%>"
-					/>
-				</div>
 				<button type="submit">Post now</button>
 			</form>
 			<% if (errors) { %>

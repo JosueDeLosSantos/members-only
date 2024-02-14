@@ -10,6 +10,7 @@ const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcryptjs');
+const { DateTime } = require('luxon');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -31,6 +32,13 @@ db.on(
 );
 
 const app = express();
+
+/* const newDate = new Date();
+console.log(
+	DateTime.fromJSDate(newDate)
+		.setLocale('en')
+		.toLocaleString(DateTime.DATETIME_FULL)
+); */
 
 app.use(passport.initialize());
 app.use(

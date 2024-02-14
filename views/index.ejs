@@ -59,6 +59,18 @@
 			<header>
 				<h1>Posts</h1>
 			</header>
+			<section>
+				<% if (posts.length) {%> <%
+				posts.forEach(function(post) {%>
+				<div class="post">
+					<h3><%= post.title%></h3>
+					<p><%= post.message%></p>
+					<hr />
+					<p><%= post.virtual_date%></p>
+				</div>
+				<br />
+				<%})%> <% }%>
+			</section>
 		</main>
 		<footer>
 			<p>&copy</p>
