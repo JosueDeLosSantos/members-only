@@ -7,10 +7,17 @@
 			content="width=device-width, initial-scale=1.0"
 		/>
 		<title>Home</title>
+		<link rel="stylesheet" href="/style.css" />
 	</head>
 	<body>
 		<% if (currentUser) { %>
 		<h1>Welcome <%= currentUser.last_name%></h1>
+		<button>
+			<a
+				href="<%= (currentPath !== undefined) ? `${currentPath}users/log-out` : '' %>"
+				>Log out</a
+			>
+		</button>
 		<% } else { %>
 		<h1>You are logged out</h1>
 		<% }%>

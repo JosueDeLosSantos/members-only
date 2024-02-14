@@ -2,10 +2,11 @@
   "name": "members-only",
   "version": "1.0.0",
   "description": "This web app shows an exclusive clubhouse where members can write anonymous posts. Inside the clubhouse, members can see who the author of a post is, but outside they can only see the story and wonder who wrote it.",
-  "main": "index.js",
+  "private": true,
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js"
+    "start": "node ./bin/www",
+    "dev": "nodemon ./bin/www",
+    "cleardb": "node cleardb.js"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +16,8 @@
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
+    "debug": "^4.3.4",
     "dotenv": "^16.4.1",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
@@ -24,6 +27,7 @@
     "http-errors": "^2.0.0",
     "luxon": "^3.4.4",
     "mongoose": "^8.1.1",
+    "morgan": "^1.10.0",
     "passport": "^0.7.0",
     "passport-local": "^1.0.0"
   }

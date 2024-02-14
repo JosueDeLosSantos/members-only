@@ -100,11 +100,38 @@ exports.user_create_post = [
 
 // Display login form on GET
 exports.login_form_get = (req, res, next) => {
+	console.dir(req.originalUrl); // '/users/log-in'
+	console.dir(req.rawHeaders[1]); // 'localhost:3000'
+	console.dir(req.protocol); // 'http'
+	console.log(`${req.rawHeaders[1]}${req.originalUrl}`);
 	res.render('login_form');
 };
 
 // login form on POST
 exports.login_form_post = passport.authenticate('local', {
 	successRedirect: '/',
-	failureRedirect: '/log-in-failure',
+	failureRedirect: '/users/log-in-failure',
 });
+// Display failure login form on GET
+exports.login_form_failure_get = (req, res, next) => {
+	res.render('login_form_failure');
+};
+
+// Failure login form on POST
+exports.login_form_failure_post = passport.authenticate(
+	'local',
+	{
+		successRedirect: '/',
+		failureRedirect: '/users/log-in-failure',
+	}
+);
+
+exports.logout = (req, res, next) => {
+	req.logout((err) => {
+		if (err) {
+			return next(err);
+		}
+
+		res.redirect('/');
+	});
+};
