@@ -33,12 +33,23 @@ db.on(
 
 const app = express();
 
-/* const newDate = new Date();
-console.log(
-	DateTime.fromJSDate(newDate)
-		.setLocale('en')
-		.toLocaleString(DateTime.DATETIME_FULL)
-); */
+/* function removeAst(dateString) {
+	// Define the regular expression pattern to match "AST"
+	const pattern = /\bAST\b/gi;
+
+	// Replace occurrences of "AST" with an empty string
+	const cleanedDate = dateString.replace(pattern, '');
+
+	return cleanedDate;
+}
+
+const newDate = new Date();
+
+const formattedDate = DateTime.fromJSDate(newDate)
+	.setLocale('en')
+	.toLocaleString(DateTime.DATETIME_FULL);
+
+console.log(removeAst(formattedDate)); */
 
 app.use(passport.initialize());
 app.use(

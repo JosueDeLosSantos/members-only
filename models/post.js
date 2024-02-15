@@ -13,10 +13,22 @@ const PostSchema = new Schema({
 	},
 });
 
+function removeAst(dateString) {
+	// Define the regular expression pattern to match "AST"
+	const pattern = /\bAST\b/gi;
+
+	// Replace occurrences of "AST" with an empty string
+	const cleanedDate = dateString.replace(pattern, '');
+
+	return cleanedDate;
+}
+
 PostSchema.virtual('virtual_date').get(function () {
-	return DateTime.fromJSDate(this.date)
+	const notFormattedDate = DateTime.fromJSDate(this.date)
 		.setLocale('en')
 		.toLocaleString(DateTime.DATETIME_FULL); // format: February 14, 2024 at 6:04 PM AST
+	const formattedDate = removeAst(notFormattedDate);
+	return formattedDate;
 });
 
 module.exports = mongoose.model('Post', PostSchema);

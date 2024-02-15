@@ -120,6 +120,42 @@ exports.login_form_failure_post = passport.authenticate(
 	}
 );
 
+exports.become_member_get = (req, res, next) => {
+	res.render('become_member', { errors: false });
+};
+
+exports.become_member_post = [
+	// Validate and sanitize fields.
+	body('member')
+		.custom(async (value) => {
+			return value === 'welcome123';
+		})
+		.withMessage('You must enter a valid secret key'),
+	asyncHandler(async (req, res, next) => {
+		// Extract the validation errors from a request.
+		const errors = validationResult(req);
+
+		// Update User object with escaped and trimmed data
+		const user = await User.findById(req.user._id);
+
+		// Update user's membership status
+		user.member = true;
+
+		if (!errors.isEmpty()) {
+			// There are errors. Render form again with sanitized values/errors messages.
+			res.render('become_member', {
+				errors: errors.array(),
+			});
+			return;
+		} else {
+			// Data from form is valid.
+			// Save post.
+			await User.findByIdAndUpdate(req.user._id, user, {});
+			res.redirect('/');
+		}
+	}),
+];
+
 exports.logout = (req, res, next) => {
 	req.logout((err) => {
 		if (err) {

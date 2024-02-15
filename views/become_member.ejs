@@ -6,11 +6,10 @@
 			name="viewport"
 			content="width=device-width, initial-scale=1.0"
 		/>
-		<title>Post creation</title>
+		<title>Join the club</title>
 		<link rel="stylesheet" href="/style.css" />
 	</head>
 	<body>
-		<% if (currentUser){%>
 		<nav>
 			<div class="logo">
 				<p>
@@ -27,29 +26,32 @@
 				</li>
 			</ul>
 		</nav>
-		<header>
-			<h1><%= title%></h1>
-		</header>
+		<aside>
+			<ul>
+				<li>
+					<a href="<%= `${mainPath}posts/create`%>"
+						>Post a message</a
+					>
+				</li>
+				<li><a href="">About</a></li>
+			</ul>
+		</aside>
 		<main>
-			<form method="post">
+			<header>
+				<h1>Become a member</h1>
+			</header>
+			<form class="member-form" method="post">
 				<div class="type-text">
-					<label for="title">Title</label>
+					<label for="member"
+						>Enter secret key to join the club</label
+					>
 					<input
 						type="text"
-						name="title"
-						value="<%= (post !== undefined) ? `${post.title}`: ''%>"
+						name="member"
+						placeholder="welcome123"
 					/>
 				</div>
-				<div class="type-text">
-					<label for="message">Message</label>
-					<textarea
-						name="message"
-						cols="30"
-						rows="10"
-						value="<%= (post !== undefined) ? `${post.message}`: ''%>"
-					></textarea>
-				</div>
-				<button type="submit">Post now</button>
+				<button type="submit">Join club now</button>
 			</form>
 			<% if (errors) { %>
 			<ul>
@@ -59,11 +61,14 @@
 			</ul>
 			<% } %>
 		</main>
-		<%} else {%>
-		<p class="error-msg">
-			<a href="<%= `${mainPath}users/log-in`%>">Log in</a>
-			before creating a message
-		</p>
-		<% }%>
+		<footer>
+			<p>&copy</p>
+			<p>
+				<a href="https://github.com/JosueDeLosSantos"
+					>Josue De Los Santos</a
+				>
+				2024
+			</p>
+		</footer>
 	</body>
 </html>
