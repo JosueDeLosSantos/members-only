@@ -12,7 +12,7 @@ const UserSchema = new Schema({
 });
 
 // Virtual for user's full name
-UserSchema.virtual('name').get(function () {
+UserSchema.virtual('virtual_name').get(function () {
 	// To avoid errors in cases where a user does not have either a family name or first name
 	// We want to make sure we handle the exception by returning an empty string for that case
 	const fullName = '';
@@ -23,7 +23,7 @@ UserSchema.virtual('name').get(function () {
 });
 
 UserSchema.virtual('url').get(function () {
-	return `/home/user/${this._id}`;
+	return `user/${this._id}`;
 });
 
 module.exports = mongoose.model('User', UserSchema);

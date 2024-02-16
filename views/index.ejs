@@ -11,11 +11,153 @@
 	</head>
 	<body>
 		<% if (currentUser) { %> <% if(currentUser.admin) { %>
-		<h1>I am logged and I am an admin.</h1>
+		<nav>
+			<div class="logo">
+				<p>
+					<a href="<%= `${mainPath}`%>"
+						>Posting Club</a
+					>
+				</p>
+			</div>
+			<ul>
+				<li class="link">
+					<%= `${currentUser.first_name}
+					${currentUser.last_name}`%>
+				</li>
+				<li>(admin)</li>
+			</ul>
+		</nav>
+		<aside>
+			<ul>
+				<li>
+					<a href="<%= `${mainPath}posts/create`%>"
+						>Post a message</a
+					>
+				</li>
+				<li><a href="">About</a></li>
+				<li class="link">
+					<a href="<%= `${currentPath}users/log-out`%>"
+						>Log out</a
+					>
+				</li>
+			</ul>
+		</aside>
+		<main>
+			<header>
+				<h1>Posts</h1>
+			</header>
+			<section>
+				<% if (posts.length) {%> <%
+				posts.forEach(function(post) {%>
+				<div class="post">
+					<div class="post-body">
+						<h3><%= post.title%></h3>
+						<p><%= post.message%></p>
+					</div>
+					<div class="post-detail">
+						<p class="boldName">
+							<%= post.user.first_name%>
+						</p>
+						<p class="boldName">
+							<%= post.user.last_name%>
+						</p>
+						<p>on</p>
+						<p><%= post.virtual_date%></p>
+					</div>
+					<div>
+						<form class="post-options" method="post">
+							<div>
+								<input
+									type="hidden"
+									name="delete"
+									value="<%= post._id%>"
+									id="<%= post._id%>"
+								/>
+							</div>
+							<button type="submit">Delete</button>
+						</form>
+					</div>
+				</div>
+				<br />
+				<%})%> <% }%>
+			</section>
+		</main>
+		<footer>
+			<p>&copy</p>
+			<p>
+				<a href="https://github.com/JosueDeLosSantos"
+					>Josue De Los Santos</a
+				>
+				2024
+			</p>
+		</footer>
 		<% } else if (currentUser.member) { %>
-		<h1>
-			I am logged in, I am a member and I'm not an admin.
-		</h1>
+		<nav>
+			<div class="logo">
+				<p>
+					<a href="<%= `${mainPath}`%>"
+						>Posting Club</a
+					>
+				</p>
+			</div>
+			<ul>
+				<li class="link">
+					<%= `${currentUser.first_name}
+					${currentUser.last_name}`%>
+				</li>
+			</ul>
+		</nav>
+		<aside>
+			<ul>
+				<li>
+					<a href="<%= `${mainPath}posts/create`%>"
+						>Post a message</a
+					>
+				</li>
+				<li><a href="">About</a></li>
+				<li class="link">
+					<a href="<%= `${currentPath}users/log-out`%>"
+						>Log out</a
+					>
+				</li>
+			</ul>
+		</aside>
+		<main>
+			<header>
+				<h1>Posts</h1>
+			</header>
+			<section>
+				<% if (posts.length) {%> <%
+				posts.forEach(function(post) {%>
+				<div class="post">
+					<div class="post-body">
+						<h3><%= post.title%></h3>
+						<p><%= post.message%></p>
+					</div>
+					<div class="post-detail">
+						<p class="boldName">
+							<%= post.user.first_name%>
+						</p>
+						<p class="boldName">
+							<%= post.user.last_name%>
+						</p>
+						<p>on</p>
+						<p><%= post.virtual_date%></p>
+					</div>
+				</div>
+				<br />
+				<%})%> <% }%>
+			</section>
+		</main>
+		<footer>
+			<p>&copy</p>
+			<p>
+				<a href="https://github.com/JosueDeLosSantos"
+					>Josue De Los Santos</a
+				>
+				2024
+			</p>
+		</footer>
 		<% } else {%>
 
 		<nav>
@@ -28,9 +170,8 @@
 			</div>
 			<ul>
 				<li class="link">
-					<a href="<%= `${currentPath}users/log-out`%>"
-						>Log out</a
-					>
+					<%= `${currentUser.first_name}
+					${currentUser.last_name}`%>
 				</li>
 			</ul>
 		</nav>
@@ -48,6 +189,11 @@
 					>
 				</li>
 				<li><a href="">About</a></li>
+				<li class="link">
+					<a href="<%= `${currentPath}users/log-out`%>"
+						>Log out</a
+					>
+				</li>
 			</ul>
 		</aside>
 		<main>
@@ -58,10 +204,10 @@
 				<% if (posts.length) {%> <%
 				posts.forEach(function(post) {%>
 				<div class="post">
-					<h3><%= post.title%></h3>
-					<p><%= post.message%></p>
-					<hr />
-					<p><%= post.virtual_date%></p>
+					<div class="post-body">
+						<h3><%= post.title%></h3>
+						<p><%= post.message%></p>
+					</div>
 				</div>
 				<br />
 				<%})%> <% }%>
@@ -119,9 +265,10 @@
 				<% if (posts.length) {%> <%
 				posts.forEach(function(post) {%>
 				<div class="post">
-					<h3><%= post.title%></h3>
-					<p><%= post.message%></p>
-					<hr />
+					<div class="post-body">
+						<h3><%= post.title%></h3>
+						<p><%= post.message%></p>
+					</div>
 				</div>
 				<br />
 				<%})%> <% }%>

@@ -17,12 +17,10 @@ exports.post_create_post = [
 	body('title')
 		.trim()
 		.isLength({ min: 2 })
-		.escape()
 		.withMessage('Title must be specified.'),
 	body('message')
 		.trim()
 		.isLength({ min: 10 })
-		.escape()
 		.withMessage('Message must be specified.'),
 	// Process request after validation and sanitization.
 	asyncHandler(async (req, res, next) => {

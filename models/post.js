@@ -31,4 +31,8 @@ PostSchema.virtual('virtual_date').get(function () {
 	return formattedDate;
 });
 
+PostSchema.virtual('url').get(function () {
+	return `posts/${this._id}`;
+});
+
 module.exports = mongoose.model('Post', PostSchema);
