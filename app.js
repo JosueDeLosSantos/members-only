@@ -11,7 +11,6 @@ const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcryptjs');
-const { DateTime } = require('luxon');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');

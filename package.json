@@ -4,7 +4,7 @@
   "description": "This web app shows an exclusive clubhouse where members can write anonymous posts. Inside the clubhouse, members can see who the author of a post is, but outside they can only see the story and wonder who wrote it.",
   "private": true,
   "scripts": {
-    "start": "NODE_ENV=production node ./bin/www",
+    "start": "node ./bin/www",
     "dev": "nodemon ./bin/www",
     "cleardb": "node cleardb.js"
   },
