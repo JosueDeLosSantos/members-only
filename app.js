@@ -1,6 +1,7 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const createError = require('http-errors');
+const favicon = require('serve-favicon');
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', false);
 const logger = require('morgan');
@@ -33,23 +34,7 @@ db.on(
 
 const app = express();
 
-/* function removeAst(dateString) {
-	// Define the regular expression pattern to match "AST"
-	const pattern = /\bAST\b/gi;
-
-	// Replace occurrences of "AST" with an empty string
-	const cleanedDate = dateString.replace(pattern, '');
-
-	return cleanedDate;
-}
-
-const newDate = new Date();
-
-const formattedDate = DateTime.fromJSDate(newDate)
-	.setLocale('en')
-	.toLocaleString(DateTime.DATETIME_FULL);
-
-console.log(removeAst(formattedDate)); */
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 app.use(passport.initialize());
 app.use(

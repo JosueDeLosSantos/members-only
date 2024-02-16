@@ -6,27 +6,64 @@
 			name="viewport"
 			content="width=device-width, initial-scale=1.0"
 		/>
-
 		<title>Log in</title>
 		<link rel="stylesheet" href="/style.css" />
 	</head>
 	<body>
-		<h2>Log in</h2>
-		<form method="POST">
-			<label for="username">Username</label>
-			<input
-				name="username"
-				placeholder="username"
-				type="text"
-			/>
-			<label for="password">Password</label>
-			<input name="password" type="password" />
-			<br />
-			<button style="margin-top: 50px">Log In</button>
-		</form>
-		<p class="error-msg">
+		<nav>
+			<div class="logo">
+				<p>
+					<a href="<%= `${mainPath}`%>"
+						>Posting Club</a
+					>
+				</p>
+			</div>
+		</nav>
+		<main class="login-form-main">
+			<header><h2>Log in</h2></header>
+			<form class="login-form" method="POST">
+				<div>
+					<label for="username">Username</label>
+					<input
+						name="username"
+						placeholder="johndoe"
+						type="text"
+					/>
+				</div>
+				<div>
+					<label for="password">Password</label>
+					<input
+						name="password"
+						placeholder="admin123"
+						type="password"
+					/>
+				</div>
+				<div>
+					<button class="log-in-btn" type="submit">
+						Log In
+					</button>
+				</div>
+			</form>
+			<p class="error-msg" style="text-align: center">
+				Your username or password was incorrect. please
+				try again!
+			</p>
+		</main>
+		<footer>
+			<p>&copy</p>
+			<p>
+				<a href="https://github.com/JosueDeLosSantos"
+					>Josue De Los Santos</a
+				>
+				2024
+			</p>
+		</footer>
+	</body>
+</html>
+
+<!-- 
+	<p class="error-msg">
 			Your username or password was incorrect. please try
 			again!
 		</p>
-	</body>
-</html>
+ -->

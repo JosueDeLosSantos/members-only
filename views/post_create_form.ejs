@@ -30,9 +30,9 @@
 		<header>
 			<h1><%= title%></h1>
 		</header>
-		<main>
-			<form method="post">
-				<div class="type-text">
+		<main class="login-form-main create-post-main">
+			<form class="member-form" method="post">
+				<div class="type-text post-create">
 					<label for="title">Title</label>
 					<input
 						type="text"
@@ -40,8 +40,12 @@
 						value="<%= (post !== undefined) ? `${post.title}`: ''%>"
 					/>
 				</div>
-				<div class="type-text">
-					<label for="message">Message</label>
+				<div class="type-text post-create">
+					<label
+						class="post-create-label"
+						for="message"
+						>Message</label
+					>
 					<textarea
 						name="message"
 						cols="30"
@@ -49,7 +53,9 @@
 						value="<%= (post !== undefined) ? `${post.message}`: ''%>"
 					></textarea>
 				</div>
-				<button type="submit">Post now</button>
+				<button class="sign-up-btn" type="submit">
+					Post now
+				</button>
 			</form>
 			<% if (errors) { %>
 			<ul>
@@ -59,6 +65,15 @@
 			</ul>
 			<% } %>
 		</main>
+		<footer>
+			<p>&copy</p>
+			<p>
+				<a href="https://github.com/JosueDeLosSantos"
+					>Josue De Los Santos</a
+				>
+				2024
+			</p>
+		</footer>
 		<%} else {%>
 		<p class="error-msg">
 			<a href="<%= `${mainPath}users/log-in`%>">Log in</a>

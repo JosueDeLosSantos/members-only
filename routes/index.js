@@ -26,4 +26,6 @@ router.post(
 	})
 );
 
+router.get('/favicon.ico', (req, res) => res.status(204));
+
 module.exports = router;

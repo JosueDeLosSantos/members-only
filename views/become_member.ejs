@@ -50,16 +50,18 @@
 						name="member"
 						placeholder="welcome123"
 					/>
+					<% if (errors) { %>
+					<ul>
+						<%errors.forEach(function(error){%>
+						<li class="error-msg"><%=error.msg%></li>
+						<%});%>
+					</ul>
+					<% } %>
 				</div>
-				<button type="submit">Join club now</button>
+				<button class="become-member-btn" type="submit">
+					Join club now
+				</button>
 			</form>
-			<% if (errors) { %>
-			<ul>
-				<%errors.forEach(function(error){%>
-				<li><%=error.msg%></li>
-				<%});%>
-			</ul>
-			<% } %>
 		</main>
 		<footer>
 			<p>&copy</p>

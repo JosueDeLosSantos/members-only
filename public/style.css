@@ -20,6 +20,18 @@ body {
 	position: relative;
 }
 
+input {
+	text-align: center;
+	font-style: italic;
+}
+
+input:hover,
+input:active,
+input:focus,
+input:focus-visible {
+	outline: none;
+}
+
 a {
 	text-decoration: none;
 }
@@ -77,7 +89,6 @@ nav > ul > li:last-child {
 aside {
 	float: left;
 	width: 15%;
-	min-height: 80vh;
 	color: var(--option);
 	margin-left: 0.8rem;
 	margin-top: 2rem;
@@ -94,7 +105,7 @@ header {
 }
 
 aside > ul > li {
-	border-bottom: 1px solid gray;
+	padding-top: 1rem;
 }
 
 main {
@@ -102,14 +113,67 @@ main {
 	padding-left: 12rem;
 }
 
+.login-form-main {
+	padding-left: 0;
+}
+
 .member-form {
 	width: 40%;
 	padding: 1rem;
 	background-color: var(--main);
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 1.5%;
+}
+
+.login-form {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.login-form > div {
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 2rem;
+}
+
+.login-form > div > label {
+	margin-bottom: 0.9rem;
+	color: var(--option);
+	font-weight: bold;
+}
+
+.login-form > div > input {
+	border: none;
+	box-shadow: 0px 1px 0px;
+	width: 30%;
+	padding-bottom: 0.3rem;
+}
+
+.login-form > div > input::placeholder {
+	text-align: center;
+}
+
+.member-form > div > input,
+textarea {
+	margin-top: 1rem;
+	padding: 0.2rem;
+}
+
+.member-form > div > label {
+	font-weight: bold;
 }
 
 .member-form > button {
 	background-color: var(--option);
+	margin-top: 1rem;
+	width: fit-content;
 }
 
 .type-text {
@@ -146,7 +210,10 @@ main {
 	margin-top: 0.5rem;
 }
 
-.delete-btn {
+.delete-btn,
+.become-member-btn,
+.log-in-btn,
+.sign-up-btn {
 	font-size: 11px;
 	color: white;
 	background-color: var(--option);
@@ -155,8 +222,42 @@ main {
 	border-radius: 5px;
 }
 
+.become-member-btn,
+.log-in-btn {
+	font-size: 13px;
+}
+
+.sign-up-btn {
+	font-size: 1rem;
+}
+
 .boldName {
 	font-weight: bold;
+}
+
+/* post creation */
+
+.create-post-main {
+	min-height: 75vh;
+}
+
+.post-create {
+	width: 80%;
+}
+
+.post-create > input,
+.post-create > textarea {
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.post-create-label {
+	margin-top: 1rem;
+}
+textarea:focus,
+textarea:focus-visible {
+	outline: none;
 }
 
 .error-msg {

@@ -10,72 +10,106 @@
 		<title><%= title%></title>
 	</head>
 	<body>
-		<h1><%= title%></h1>
-		<form method="post">
-			<div class="type-text">
-				<label for="first_name">First Name:</label>
-
-				<input
-					type="text"
-					name="first_name"
-					value="<%= (user === undefined) ? '': user.first_name %>"
-				/>
+		<nav>
+			<div class="logo">
+				<p>
+					<a href="<%= `${mainPath}`%>"
+						>Posting Club</a
+					>
+				</p>
 			</div>
+		</nav>
+		<main class="login-form-main">
+			<header>
+				<h2><%= title%></h2>
+			</header>
+			<form class="login-form" method="post">
+				<div class="type-text">
+					<label for="first_name">First Name:</label>
 
-			<div class="type-text">
-				<label for="last_name">Last Name:</label>
+					<input
+						type="text"
+						name="first_name"
+						value="<%= (user === undefined) ? '': user.first_name %>"
+					/>
+				</div>
 
-				<input
-					type="text"
-					name="last_name"
-					value="<%= (user === undefined) ? '': user.last_name %>"
-				/>
-			</div>
-			<div class="type-text">
-				<label for="username">Username: </label>
+				<div class="type-text">
+					<label for="last_name">Last Name:</label>
 
-				<input
-					type="text"
-					name="username"
-					value="<%= (user === undefined) ? '': user.username %>"
-				/>
-			</div>
-			<div class="type-password">
-				<label for="password">Password:</label>
+					<input
+						type="text"
+						name="last_name"
+						value="<%= (user === undefined) ? '': user.last_name %>"
+					/>
+				</div>
+				<div class="type-text">
+					<label for="username">Username: </label>
 
-				<input
-					type="text"
-					name="password"
-					value="<%= (user === undefined) ? '': user.password %>"
-				/>
-			</div>
-			<div class="type-password">
-				<label for="passwordConfirmation"
-					>Confirm Password:</label
+					<input
+						type="text"
+						name="username"
+						value="<%= (user === undefined) ? '': user.username %>"
+					/>
+				</div>
+				<div class="type-text">
+					<label for="password">Password:</label>
+
+					<input
+						type="password"
+						name="password"
+						value="<%= (user === undefined) ? '': user.password %>"
+					/>
+				</div>
+				<div class="type-text">
+					<label for="passwordConfirmation"
+						>Confirm Password:</label
+					>
+
+					<input
+						type="password"
+						name="passwordConfirmation"
+						value="<%= (passwordConfirmation === undefined) ? '': passwordConfirmation %>"
+					/>
+				</div>
+				<div class="type-checkbox">
+					<label for="admin">Is admin?</label>
+					<% if(admin !== undefined) {%>
+
+					<input
+						type="checkbox"
+						name="admin"
+						checked
+					/>
+
+					<%} else {%>
+					<input type="checkbox" name="admin" />
+					<%}%>
+				</div>
+				<div>
+					<button class="sign-up-btn" type="submit">
+						Sign up
+					</button>
+				</div>
+				<div>
+					<% if (errors) { %>
+					<ul>
+						<%errors.forEach(function(error){%>
+						<li class="error-msg"><%=error.msg%></li>
+						<%});%>
+					</ul>
+					<% } %>
+				</div>
+			</form>
+		</main>
+		<footer>
+			<p>&copy</p>
+			<p>
+				<a href="https://github.com/JosueDeLosSantos"
+					>Josue De Los Santos</a
 				>
-
-				<input
-					type="text"
-					name="passwordConfirmation"
-					value="<%= (passwordConfirmation === undefined) ? '': passwordConfirmation %>"
-				/>
-			</div>
-			<div class="type-checkbox">
-				<% if(admin !== undefined) {%>
-				<input type="checkbox" name="admin" checked />
-				<%} else {%>
-				<input type="checkbox" name="admin" />
-				<%}%>
-				<label for="admin">Is admin</label>
-			</div>
-			<button type="submit">Sign up</button>
-		</form>
-		<% if (errors) { %>
-		<ul>
-			<%errors.forEach(function(error){%>
-			<li><%=error.msg%></li>
-			<%});%>
-		</ul>
-		<% } %>
+				2024
+			</p>
+		</footer>
 	</body>
 </html>

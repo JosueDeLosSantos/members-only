@@ -127,10 +127,18 @@ exports.become_member_get = (req, res, next) => {
 exports.become_member_post = [
 	// Validate and sanitize fields.
 	body('member')
-		.custom(async (value) => {
-			return value === 'welcome123';
-		})
-		.withMessage('You must enter a valid secret key'),
+		.trim()
+		.isLength({ min: 1 })
+		.withMessage('You must enter a secret key')
+		.custom((value) => {
+			if (value === 'welcome123') {
+				return true;
+			} else {
+				throw new Error(
+					'You must enter a valid secret key'
+				);
+			}
+		}),
 	asyncHandler(async (req, res, next) => {
 		// Extract the validation errors from a request.
 		const errors = validationResult(req);
