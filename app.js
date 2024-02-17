@@ -1,6 +1,6 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
-const createError = require('http-errors');
+// const createError = require('http-errors');
 const favicon = require('serve-favicon');
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', false);
@@ -20,7 +20,7 @@ const port = process.env.PORT || 3000;
 
 const app = express();
 
-const mongoDb = process.env.MONGODB_URI;
+const mongoDb = process.env.DATABASE_URL;
 
 mongoose.connect(mongoDb);
 

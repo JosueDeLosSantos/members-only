@@ -10,7 +10,7 @@ const Post = require('./models/post');
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', false);
 
-const mongoDB = process.env.MONGODB_URI;
+const mongoDB = process.env.DATABASE_URL;
 
 main().catch((err) => console.log(err));
 
