@@ -16,6 +16,10 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const postsRouter = require('./routes/posts');
 
+const port = process.env.PORT || 3000;
+
+const app = express();
+
 const mongoDb = process.env.MONGODB_URI;
 
 mongoose.connect(mongoDb);
@@ -30,8 +34,6 @@ db.on(
 	'connected',
 	console.log.bind(console, 'connected to database')
 );
-
-const app = express();
 
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
@@ -109,7 +111,11 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/posts', postsRouter);
 
-// catch 404 and forward to error handler
+app.listen(port, () => {
+	console.log(`Listening on port ${port}`);
+});
+
+/* // catch 404 and forward to error handler
 app.use(function (req, res, next) {
 	next(createError(404));
 });
@@ -126,4 +132,4 @@ app.use(function (err, req, res, next) {
 	res.render('error');
 });
 
-module.exports = app;
+module.exports = app; */
