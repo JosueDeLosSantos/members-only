@@ -4,7 +4,7 @@ const asyncHandler = require('express-async-handler');
 
 const Post = require('../models/post');
 
-router.get(
+/* router.get(
 	'/',
 	asyncHandler(async (req, res, next) => {
 		const allPosts = await Post.find({})
@@ -12,6 +12,19 @@ router.get(
 			.populate('user')
 			.exec();
 		res.render('index', {
+			posts: allPosts,
+		});
+	})
+); */
+
+router.get(
+	'/',
+	asyncHandler(async (req, res, next) => {
+		const allPosts = await Post.find({})
+			.sort({ date: 1 })
+			.populate('user')
+			.exec();
+		res.json({
 			posts: allPosts,
 		});
 	})
